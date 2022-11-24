@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.7
 import PackageDescription
 
 let package = Package(
@@ -7,10 +7,12 @@ let package = Package(
 		.library(name: "OPML", targets: ["OPML"])
 	],
 	dependencies: [
-		.package(name: "Html", url: "https://github.com/hallee/swift-html.git", from: "0.3.0")
+		.package(url: "https://github.com/JustinMeans/pfc-swift-html", branch: "main")
 	],
 	targets: [
-		.target(name: "OPML", dependencies: ["Html"]),
+		.target(name: "OPML", dependencies: [
+			.product(name: "PFCHtml", package: "pfc-swift-html")
+		]),
 		.testTarget(
 			name: "Tests",
 			dependencies: ["OPML"]
